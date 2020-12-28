@@ -5,9 +5,6 @@ import com.github.oscerd.finnhub.model.CompanyProfile;
 import com.github.oscerd.finnhub.model.Quote;
 import lombok.Data;
 import org.apache.http.client.ClientProtocolException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.io.IOException;
 
@@ -43,6 +40,9 @@ public class FinnHubData {
         CompanyProfile companyProfile = null;
         try {
             companyProfile = client.getCompanyProfile(ticker);
+            if(companyProfile.getName() == null){
+                return null;
+            }
         } catch (ClientProtocolException e) {
             e.printStackTrace();
         } catch (IOException e) {

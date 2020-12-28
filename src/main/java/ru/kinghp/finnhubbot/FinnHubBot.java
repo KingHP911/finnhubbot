@@ -1,6 +1,5 @@
 package ru.kinghp.finnhubbot;
 
-import com.github.oscerd.finnhub.client.FinnhubClient;
 import com.github.oscerd.finnhub.model.CompanyProfile;
 import com.github.oscerd.finnhub.model.Quote;
 import lombok.Data;
@@ -46,7 +45,8 @@ public class FinnHubBot extends TelegramWebhookBot {
                     CompanyProfile profile = hubData.getCompanyProfile(ticker);
                     Quote quote = hubData.getQuote(ticker);
                     String message = "";
-                    if (quote != null & profile != null){
+
+                    if (profile != null){
                         message = "Company name: " + profile.getName() + "\n" +
                                 "Current price: " + quote.getCurrentPrice();
 
